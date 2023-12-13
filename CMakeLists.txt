@@ -7,8 +7,8 @@ ENDIF()
 
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall   -O3")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -O3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -O3")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -march=native")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 
@@ -78,6 +78,12 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 -lboost_serialization
 -lcrypto
 )
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    "ORB_SLAM3Config.cmake"
+    VERSION "3.0"
+    COMPATIBILITY AnyNewerVersion)
 
 # If RealSense SDK is found the library is added and its examples compiled
 if(realsense2_FOUND)
